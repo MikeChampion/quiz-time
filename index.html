@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="./assets/css/flex-style.css"
+        />
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+        <title>Quiz Time!</title>
+    </head>
+    <body>
+        <header>
+            <nav></nav>
+            <h1>Quiz Time!</h1>
+        </header>
+        <main class="quiz-container">
+            <div class="time-top5-container">
+                <div class="timer-container">
+                    <h2>Time remaining</h2>
+                    <p class="timer">00:00</p>
+                </div>
+                <div class="top5">
+                    <h2>Top 5 Scores</h2>
+                    <ol class="top5-list">
+                        <li>first</li>
+                        <li>second</li>
+                        <li>third</li>
+                        <li>fourth</li>
+                        <li>fifth</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="question-answer-result-container">
+                <div class="question">
+                    <h2>Question # <span id="question-count">COUNT</span></h2>
+                    <p class="question">The question will go here?</p>
+                </div>
+                <div class="multi-choice hide">
+                        <p>Please choose from the following options:</p>
+                        <div class="ans-btn-container">
+                            <button id="a1" class="btn">A</button>
+                            <button id="a2" class="btn">B</button>
+                            <button id="a3" class="btn">C</button>
+                            <button id="a4" class="btn">D</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="prev-question-result">
+                    <p>
+                        Your previous answer was
+                        <span id="prev-q-result">RESULT</span>
+                    </p>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+        <script src="js/main.js"></script>
+    </body>
+</html>
