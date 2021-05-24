@@ -13,20 +13,57 @@
  *
  *  */
 
+/* VARIABLES */
+const timerEl = document.getElementById("timer");
+const startBtnEl = document.getElementById("start-btn");
+const quizContainerEl = document.getElementById(
+    "question-answer-result-container"
+);
+
 const questAnsList = [
     {
         question: "Which is not a basic data type?",
-        boolean: wrong,
-        undefined: wrong,
-        unknown: correct,
-        number: wrong,
+        boolean: "wrong",
+        undefined: "wrong",
+        unknown: "correct",
+        number: "wrong",
     },
 ];
+let time = 10;
 
-/*
-document.getElementById("#timer");
-var questionCount = (document.getElemantByID("#question-count");
-"#prev-q-result"
+function beginQuiz() {
+    startBtnEl.classList.add("hidden");
+    quizContainerEl.classList.remove("hidden");
+    countdown();
+}
 
-document.getElementById("#timer").textContent = countdown;
-*/
+// function countdown() {
+// 	// Sets interval in variable
+// 	var timerInterval = setInterval(function() {
+// 	  time--;
+// 	  timerEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+// 	  if(secondsLeft === 0) {
+// 		// Stops execution of action at set interval
+// 		clearInterval(timerInterval);
+// 		// Calls function to create and append image
+// 		sendMessage();
+// 	  }
+
+// 	}, 1000);
+//   }
+
+function countdown() {
+    var timeRemaining = setInterval(function () {
+        time--;
+        console.log(timeRemaining);
+        timerEl.textContent = time;
+
+        if (time === 0) {
+            clearInterval(timeRemaining);
+        }
+    }, 1000);
+}
+
+/* EVENT LISTENERS */
+startBtnEl.addEventListener("click", beginQuiz);
