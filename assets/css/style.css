@@ -115,6 +115,11 @@ h1 {
     align-self: flex-start;
 }
 
+.question p {
+    width: 75%;
+    text-align: center;
+}
+
 .multi-choice {
     display: flex;
     flex-flow: column wrap;
