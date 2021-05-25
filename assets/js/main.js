@@ -19,6 +19,9 @@ const startBtnEl = document.getElementById("start-btn");
 const quizContainerEl = document.getElementById(
     "question-answer-result-container"
 );
+const questionEl = document.getElementById("question");
+const a1El = document.getElementById("a1");
+const gameOverEl = document.getElementById("game-over-container");
 
 const questAnsList = [
     {
@@ -30,37 +33,39 @@ const questAnsList = [
     },
 ];
 let time = 10;
+let qCount = 0;
 
 function beginQuiz() {
     startBtnEl.classList.add("hidden");
     quizContainerEl.classList.remove("hidden");
     countdown();
+    renderQuestion();
 }
 
-// function countdown() {
-// 	// Sets interval in variable
-// 	var timerInterval = setInterval(function() {
-// 	  time--;
-// 	  timerEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-
-// 	  if(secondsLeft === 0) {
-// 		// Stops execution of action at set interval
-// 		clearInterval(timerInterval);
-// 		// Calls function to create and append image
-// 		sendMessage();
-// 	  }
-
-// 	}, 1000);
-//   }
+function renderQuestion() {
+    for (qCount; qCount < questAnsList.length; qCount++) {
+        questionEl.textContent = questAnsList[qCount].value;
+        console.log(questAnsList[qCount].value);
+    }
+}
 
 function countdown() {
     var timeRemaining = setInterval(function () {
         time--;
-        console.log(timeRemaining);
-        timerEl.textContent = time;
+
+        if (time >= 10) {
+            timerEl.textContent = time;
+        }
+
+        if (time < 10) {
+            timerEl.textContent = "0" + time;
+        }
 
         if (time === 0) {
             clearInterval(timeRemaining);
+            // startBtnEl.classList.remove("hidden");
+            // quizContainerEl.classList.add("hidden");
+            // gameOverEl.classList.remove("hidden");
         }
     }, 1000);
 }

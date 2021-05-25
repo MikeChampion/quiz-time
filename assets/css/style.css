@@ -165,6 +165,15 @@ h1 {
     /* background: yellow; */
 }
 
+.game-over-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    width: var(--inner-container);
+    margin: 1rem;
+    font-size: 3rem;
+}
+
 .hidden {
     display: none;
 }
