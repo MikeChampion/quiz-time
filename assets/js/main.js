@@ -28,6 +28,7 @@ const a2El = document.getElementById("a2");
 const a3El = document.getElementById("a3");
 const a4El = document.getElementById("a4");
 const gameOverEl = document.getElementById("game-over-container");
+const prevAnsContEl = document.querySelector(".prev-question-result");
 const prevAnsEl = document.getElementById("prev-q-result");
 
 const questAnsArr = [
@@ -41,6 +42,16 @@ const questAnsArr = [
         ],
     },
     {
+        question:
+            "String values must be enclosed within ____ when being assigned to variables.",
+        answers: [
+            { text: "commas", correct: false },
+            { text: "parentheses", correct: false },
+            { text: "brackets", correct: false },
+            { text: "quotes", correct: true },
+        ],
+    },
+    {
         question: "Which is not a basic data type?",
         answers: [
             { text: "undefined", correct: false },
@@ -49,7 +60,18 @@ const questAnsArr = [
             { text: "number", correct: false },
         ],
     },
+    {
+        question:
+            "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            { text: "back ticks", correct: false },
+            { text: "terminal", correct: false },
+            { text: "for loops", correct: false },
+            { text: "console.log", correct: true },
+        ],
+    },
 ];
+let shuffQuestAnsArr = shuffleArray(questAnsArr);
 let ansLi = [a1El, a2El, a3El, a4El];
 let count = 0;
 let time = 10;
@@ -70,13 +92,12 @@ function beginQuiz() {
 
 function pickQuestion() {
     console.log(score);
-    if (count === questAnsArr.length) {
+    if (count === shuffQuestAnsArr.length) {
         endGame();
         return;
     }
     let i = count;
-    var qa = questAnsArr[i];
-    console.log(qa);
+    var qa = shuffQuestAnsArr[i];
     renderQuestAns(qa, i);
     count++;
 }
@@ -84,7 +105,7 @@ function pickQuestion() {
 function renderQuestAns(question, i) {
     questCountEl.textContent = i + 1;
     questionEl.textContent = question.question;
-    let answers = question.answers;
+    let answers = shuffleArray(question.answers);
     for (let i = 0; i < answers.length; i++) {
         ansLi[i].textContent = answers[i].text;
         ansLi[i].dataset.correct = answers[i].correct;
@@ -99,9 +120,9 @@ function renderQuestAns(question, i) {
 }
 
 function chooseAnswer(e) {
-    const selectedButton = e.target;
-    const correct = selectedButton.dataset.correct;
-    // renderPrevAns(correct);
+    const correct = e.target.dataset.correct;
+    console.log(correct);
+    // correct ? score++ : time--;
     if (correct) {
         score++;
         console.log(score);
@@ -109,24 +130,22 @@ function chooseAnswer(e) {
         time--;
         console.log("wrong answer");
     }
+    renderPrevAns(correct);
     pickQuestion();
 }
 
 function renderPrevAns(correct) {
     console.log(correct);
-    correct ? score++ : time--;
-    // if (correct === true) {
-    //     score++;
-    //     console.log(score);
-    // } else {
-    //     time--;
-    //     console.log("wrong answer");
-    // }
-}
+    prevAnsContEl.classList.remove("hidden");
+    prevAnsEl.textContent = "test";
 
-function clearStatusClass(element) {
-    element.classlist.remove("correct");
-    element.classlist.remove("wrong");
+    if (correct == true) {
+        prevAnsEl.textContent = "right";
+        console.log("right");
+    } else {
+        prevAnsEl.textContent = "wrong";
+        console.log("wrong");
+    }
 }
 
 function countdown() {
@@ -150,10 +169,21 @@ function countdown() {
 }
 
 function endGame() {
-    startBtnEl.classList.remove("hidden");
-    quizContainerEl.classList.add("hidden");
-    gameOverEl.classList.remove("hidden");
+    // startBtnEl.classList.remove("hidden");
+    // quizContainerEl.classList.add("hidden");
+    // gameOverEl.classList.remove("hidden");
     alert("GAME OVER");
+    return;
+}
+
+function shuffleArray(arr) {
+    for (var x = arr.length - 1; x > 0; x--) {
+        var holder = Math.floor(Math.random() * (x + 1));
+        var temp = arr[x];
+        arr[x] = arr[holder];
+        arr[holder] = temp;
+    }
+    return arr;
 }
 
 /* EVENT LISTENERS */

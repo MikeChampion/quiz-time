@@ -118,7 +118,7 @@ h1 {
 }
 
 .question p {
-    width: 75%;
+    width: 85%;
     text-align: center;
 }
 
@@ -139,17 +139,17 @@ h1 {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    gap: 0.5em;
+    width: 100%;
+    gap: 0.25em;
 }
 
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px;
     border-radius: var(--bord-rad);
-    width: 45%;
+    width: 49%;
     background: rgb(37, 87, 253);
     font-weight: bold;
     color: white;
