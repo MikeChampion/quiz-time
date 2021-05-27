@@ -60,6 +60,8 @@ h1 {
 .timer-container > p {
     font-size: 2rem;
     font-weight: bold;
+    align-self: flex-start;
+    padding: 10px;
 }
 
 .top5 {
@@ -132,18 +134,20 @@ h1 {
     align-self: flex-start;
 }
 
-.ans-btn-container {
+.answer-btn-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    gap: 1em;
-    padding: 0.5rem;
+    width: 90%;
+    gap: 0.5em;
 }
 
 .btn {
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
     border-radius: var(--bord-rad);
     width: 45%;
     background: rgb(37, 87, 253);
