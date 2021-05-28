@@ -1,36 +1,48 @@
 /** QUIZ
- * UI - basically DONE may need minor tweaks as progress is made
+ * UI - basically DONE (may need minor tweaks as progress is made)
  * timer countdown - DONE
+ * previous answer status - DONE
  * display question - DONE
  * 		multiple choice - DONE
- * 		randomize the multiple choice? 
+ *      randomize the questions - DONE 
+ * 		randomize the multiple choice - DONE 
 
  * if right score++
- * if wrong decrement remaining time
+ * else decrement remaining time
+ * 
+ * if prev answer
+ * else prev answer
+ * 
+ * game end trigger for no time or questions left - DONE
  * at game end 
- * 		Enter initials
+ * 		Enter initials (alert?)
  * 		record score and initials in local storage
  * 		(High score list of top 5?)
- *
  *  */
 
-/* VARIABLES */
-const timerEl = document.getElementById("timer");
-const startBtnEl = document.getElementById("start-btn");
-const quizContainerEl = document.getElementById(
-    "question-answer-result-container"
+/* HTML VARIABLES */
+const timerEl = document.querySelector("#timer");
+const startBtnEl = document.querySelector("#start-btn");
+const quizContainerEl = document.querySelector(
+    "#question-answer-result-container"
 );
-const questCountEl = document.getElementById("question-count");
-const questionEl = document.getElementById("question");
-const ansContEl = document.getElementById("answer-btn-container");
-const a1El = document.getElementById("a1");
-const a2El = document.getElementById("a2");
-const a3El = document.getElementById("a3");
-const a4El = document.getElementById("a4");
-const gameOverEl = document.getElementById("game-over-container");
-const prevAnsContEl = document.querySelector(".prev-question-result");
-const prevAnsEl = document.getElementById("prev-q-result");
+const questCountEl = document.querySelector("#question-count");
+const questionEl = document.querySelector("#question");
+const ansContEl = document.querySelector("#answer-btn-container");
+const a1El = document.querySelector("#a1");
+const a2El = document.querySelector("#a2");
+const a3El = document.querySelector("#a3");
+const a4El = document.querySelector("#a4");
+const gameOverEl = document.querySelector("#game-over-container");
+// const prevAnsContEl = document.querySelector(".prev-question-result");
+// const prevAnsEl = document.querySelector("#prev-q-result");
 
+/* EVENT LISTENERS */
+startBtnEl.addEventListener("click", beginQuiz);
+startBtnEl.addEventListener("click", countdown);
+ansContEl.addEventListener("click", chooseAnswer);
+
+/* JS VARIABLES */
 const questAnsArr = [
     {
         question: "Which of these is not a type of JavaScript?",
@@ -74,24 +86,44 @@ const questAnsArr = [
 let shuffQuestAnsArr = shuffleArray(questAnsArr);
 let ansLi = [a1El, a2El, a3El, a4El];
 let count = 0;
-let time = 10;
 let prevAns = "";
 let score = 0;
+let time;
+let topScores = [{ MC: 5 }, { MC: 3 }, { NOV: 4 }];
 
 function beginQuiz() {
-    gameOverEl.classList.add("hidden");
+    // gameOverEl.classList.add("hidden");
     count = 0;
-    time = 10;
     prevAns = "";
     score = 0;
     startBtnEl.classList.add("hidden");
     quizContainerEl.classList.remove("hidden");
-    countdown();
+    // prevAnsContEl.classList.add("hidden");
     pickQuestion();
 }
 
+function countdown() {
+    time = 10;
+    timerEl.textContent = time;
+    timeRemaining = setInterval(function () {
+        time--;
+
+        if (time >= 10) {
+            timerEl.textContent = time;
+        }
+
+        if (time < 10) {
+            timerEl.textContent = "0" + time;
+        }
+
+        if (time === -1) {
+            endGame();
+            return;
+        }
+    }, 1000);
+}
+
 function pickQuestion() {
-    console.log(score);
     if (count === shuffQuestAnsArr.length) {
         endGame();
         return;
@@ -110,71 +142,60 @@ function renderQuestAns(question, i) {
         ansLi[i].textContent = answers[i].text;
         ansLi[i].dataset.correct = answers[i].correct;
     }
-    if (prevAns === true) {
-        prevAnsEl.classList.remove("hidden");
-        prevAnsEl.textContent = "correct";
-    } else if (prevAns === false) {
-        prevAnsEl.classList.remove("hidden");
-        prevAnsEl.textContent = "wrong";
-    }
+    // if (prevAns === true) {
+    //     prevAnsEl.classList.remove("hidden");
+    //     prevAnsEl.textContent = "correct";
+    // } else if (prevAns === false) {
+    //     prevAnsEl.classList.remove("hidden");
+    //     prevAnsEl.textContent = "wrong";
+    // }
 }
 
 function chooseAnswer(e) {
     const correct = e.target.dataset.correct;
-    console.log(correct);
-    // correct ? score++ : time--;
-    if (correct) {
+    if (Boolean(correct === true)) {
         score++;
-        console.log(score);
-    } else if (!correct) {
+    } else {
         time--;
-        console.log("wrong answer");
     }
-    renderPrevAns(correct);
+    // renderPrevAns(correct);
     pickQuestion();
 }
 
-function renderPrevAns(correct) {
-    console.log(correct);
-    prevAnsContEl.classList.remove("hidden");
-    prevAnsEl.textContent = "test";
-
-    if (correct == true) {
-        prevAnsEl.textContent = "right";
-        console.log("right");
-    } else {
-        prevAnsEl.textContent = "wrong";
-        console.log("wrong");
-    }
-}
-
-function countdown() {
-    var timeRemaining = setInterval(function () {
-        time--;
-
-        if (time >= 10) {
-            timerEl.textContent = time;
-        }
-
-        if (time < 10) {
-            timerEl.textContent = "0" + time;
-        }
-
-        if (time === 0) {
-            clearInterval(timeRemaining);
-            endGame();
-            return;
-        }
-    }, 1000);
-}
+// function renderPrevAns(correct) {
+//     prevAns = "";
+//     prevAnsContEl.classList.remove("hidden");
+//     prevAnsEl.textContent = "test";
+//     if (Boolean(correct === true)) {
+//         prevAnsEl.textContent = "right";
+//     } else {
+//         prevAnsEl.textContent = "wrong";
+//     }
+// }
 
 function endGame() {
-    // startBtnEl.classList.remove("hidden");
-    // quizContainerEl.classList.add("hidden");
+    timerEl.textContent = "00";
+    clearInterval(timeRemaining);
+    startBtnEl.classList.remove("hidden");
+    quizContainerEl.classList.add("hidden");
     // gameOverEl.classList.remove("hidden");
-    alert("GAME OVER");
+    // alert("GAME OVER");
+    prompt("Please enter your initials.");
+    // local storage initials and score
+    // render topFive();
+    // saveScore();
+    renderTopScores();
     return;
 }
+
+// function saveScore() {
+//     // save score and initials to localstorage (string)
+//     initials = input;
+//     score = score;
+//     localStorage.setItem(initials, score);
+// }
+
+function renderTopScores() {}
 
 function shuffleArray(arr) {
     for (var x = arr.length - 1; x > 0; x--) {
@@ -185,7 +206,3 @@ function shuffleArray(arr) {
     }
     return arr;
 }
-
-/* EVENT LISTENERS */
-startBtnEl.addEventListener("click", beginQuiz);
-ansContEl.addEventListener("click", chooseAnswer);

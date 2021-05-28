@@ -54,12 +54,13 @@ h1 {
 }
 
 .timer-container > * {
-    color: red;
+    color: #ff4040;
+    font-weight: bold;
 }
 
 .timer-container > p {
     font-size: 2rem;
-    font-weight: bold;
+
     align-self: flex-start;
     padding: 10px;
 }
@@ -77,6 +78,7 @@ h1 {
 .top5 > ol {
     padding-left: 1rem;
     list-style: decimal;
+    font-weight: bold;
 }
 
 .start-btn {
