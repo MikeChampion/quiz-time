@@ -1,7 +1,13 @@
 :root {
     --dark: rgb(128, 128, 128);
-    --inner-container: 90%;
+    --inner-container: 95%;
     --bord-rad: 15px;
+    --font-size-mob: ;
+    --font-size-tab: ;
+    --font-size-desk: ;
+    --std-pad: 0.75rem;
+    --start-btn-pad: ;
+    --answer-btn-pad: ;
 }
 
 body {
@@ -10,13 +16,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background: lightgrey;
+    margin-top: 1rem;
 }
 
 h1 {
     font-size: 2rem;
-    padding-top: 0.75rem;
+    margin: 1rem 0;
 }
 
 .quiz-container {
@@ -25,8 +31,8 @@ h1 {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    width: 95vw;
-    padding: 1rem;
+    width: 90vw;
+    padding: var(--std-pad);
     margin: 1rem 0;
     background: white;
 }
@@ -39,7 +45,6 @@ h1 {
     gap: 1rem;
     width: var(--inner-container);
     margin: 1rem;
-    /* background: purple; */
 }
 
 .timer-container {
@@ -47,8 +52,8 @@ h1 {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    gap: 1.25rem;
-    padding: 1rem;
+    gap: 0.75rem;
+    padding: var(--std-pad);
     background: black;
     border-radius: var(--bord-rad);
 }
@@ -58,31 +63,35 @@ h1 {
     font-weight: bold;
 }
 
+.timer-container > h2 {
+    margin-left: 0.5rem;
+}
+
 .timer-container > p {
     font-size: 2rem;
-
     align-self: flex-start;
-    padding: 10px;
+    padding-left: 0.75rem;
 }
 
 .top5 {
     display: flex;
     flex-flow: column;
     gap: 0.5rem;
-    padding: 1rem;
+    width: 49%;
+    padding: var(--std-pad);
     background: lightgray;
     border: 1px solid var(--dark);
     border-radius: var(--bord-rad);
 }
 
 .top5 > ol {
-    padding-left: 1rem;
+    padding-left: 1.75rem;
     list-style: decimal;
     font-weight: bold;
 }
 
 .start-btn {
-    padding: 1.5rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     border-radius: var(--bord-rad);
     background: green;
@@ -97,7 +106,6 @@ h1 {
     gap: 1rem;
     width: var(--inner-container);
     margin: 1rem;
-    /* background: lightgrey; */
 }
 
 .question-answer-result-container > * {
@@ -149,7 +157,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: var(--std-pad);
     border-radius: var(--bord-rad);
     width: 49%;
     background: rgb(37, 87, 253);
@@ -158,22 +166,11 @@ h1 {
     border: 2px solid lightblue;
 }
 
-.right {
-    background: green;
-    border: 2px solid lightgreen;
-}
-
-.wrong {
-    background: red;
-    border: 2px solid pink;
-}
-
 .prev-question-result {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
-    /* background: yellow; */
 }
 
 .game-over-container {
@@ -185,28 +182,186 @@ h1 {
     font-size: 3rem;
 }
 
+.game-over {
+    color: red;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: var(--std-pad);
+}
+
 .hidden {
     display: none;
 }
 
 /* BEGIN TABLET STYLING */
 @media screen and (min-width: 768px) {
+    :root {
+        --inner-container: 80%;
+        --std-pad: 1.5rem;
+    }
+
+    body {
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin: 2rem 0;
+    }
+
     .quiz-container {
         width: 75vw;
     }
 
-    :root {
-        --inner-container: 80%;
+    .time-top5-container {
+        margin: 3rem 0 1.5rem 0;
+    }
+
+    .timer-container {
+        width: 45%;
+        /* padding: 2rem; */
+        font-size: 1.5rem;
+    }
+
+    .timer-container > p {
+        font-size: 3rem;
+        padding-left: 2rem;
+    }
+
+    .top5 {
+        width: 40%;
+        /* padding: 2rem; */
+        font-size: 1.5rem;
+        border: 2px solid var(--dark);
+    }
+
+    .top5 > ol {
+        padding-left: 2.5rem;
+    }
+
+    .start-btn {
+        /* padding: 1.5rem; */
+        margin: 1.5rem 0 3rem 0;
+        border-radius: var(--bord-rad);
+        background: green;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .question-answer-result-container {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 1rem;
+        width: var(--inner-container);
+        margin: 1rem;
+        /* background: lightgrey; */
+    }
+
+    .question-answer-result-container > * {
+        /* padding: 1rem; */
+        border: 1px solid var(--dark);
+        border-radius: var(--bord-rad);
+    }
+
+    .question {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        height: 200px;
+    }
+
+    .question h2 {
+        align-self: flex-start;
+    }
+
+    .question p {
+        width: 85%;
+        text-align: center;
+    }
+
+    .multi-choice {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .multi-choice p {
+        align-self: flex-start;
+    }
+
+    .answer-btn-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 0.25em;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* padding: 10px; */
+        border-radius: var(--bord-rad);
+        width: 49%;
+        background: rgb(37, 87, 253);
+        font-weight: bold;
+        color: white;
+        border: 2px solid lightblue;
+    }
+
+    .prev-question-result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+    }
+
+    .game-over-container {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 1rem;
+        width: var(--inner-container);
+        margin: 1rem;
+        font-size: 3rem;
+    }
+
+    .game-over {
+        color: red;
+        font-size: 2rem;
+        font-weight: bold;
+        /* padding: 1rem 0; */
     }
 }
 
 /* BEING DESKTOP STYLING */
 @media screen and (min-width: 1024px) {
+    body {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+        background: lightgrey;
+    }
+
+    h1 {
+        font-size: 3rem;
+        padding-top: 0.75rem;
+    }
+
     .quiz-container {
-        width: 50vw;
+        width: 75vw;
     }
 
     :root {
-        --inner-container: 80%;
+        --timer-5-container: 80%;
     }
 }

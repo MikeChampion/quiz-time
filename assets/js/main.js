@@ -4,17 +4,13 @@
  * previous answer status - DONE
  * display question - DONE
  * 		multiple choice - DONE
- *      randomize the questions - DONE 
- * 		randomize the multiple choice - DONE 
-
- * if right score++
- * else decrement remaining time
- * 
- * if prev answer
- * else prev answer
- * 
+ *      randomize the questions - DONE
+ * 		randomize the multiple choice - DONE
+ * if right score++; else decrement remaining time - DONE
+ * if prev answer; else prev answer - DONE
  * game end trigger for no time or questions left - DONE
- * at game end 
+ *
+ * at game end
  * 		Enter initials (alert?)
  * 		record score and initials in local storage
  * 		(High score list of top 5?)
@@ -34,15 +30,10 @@ const a2El = document.querySelector("#a2");
 const a3El = document.querySelector("#a3");
 const a4El = document.querySelector("#a4");
 const gameOverEl = document.querySelector("#game-over-container");
-// const prevAnsContEl = document.querySelector(".prev-question-result");
-// const prevAnsEl = document.querySelector("#prev-q-result");
+const prevAnsContEl = document.querySelector(".prev-question-result");
+const prevAnsEl = document.querySelector("#prev-q-result");
 
-/* EVENT LISTENERS */
-startBtnEl.addEventListener("click", beginQuiz);
-startBtnEl.addEventListener("click", countdown);
-ansContEl.addEventListener("click", chooseAnswer);
-
-/* JS VARIABLES */
+/* QUESTION ARRAY */
 const questAnsArr = [
     {
         question: "Which of these is not a type of JavaScript?",
@@ -83,6 +74,8 @@ const questAnsArr = [
         ],
     },
 ];
+
+/* VARIABLES */
 let shuffQuestAnsArr = shuffleArray(questAnsArr);
 let ansLi = [a1El, a2El, a3El, a4El];
 let count = 0;
@@ -91,14 +84,14 @@ let score = 0;
 let time;
 let topScores = [{ MC: 5 }, { MC: 3 }, { NOV: 4 }];
 
+/* TRIGGERED BY EVENT LISTENER ON START BUTTON */
 function beginQuiz() {
-    // gameOverEl.classList.add("hidden");
+    gameOverEl.classList.add("hidden");
     count = 0;
-    prevAns = "";
     score = 0;
     startBtnEl.classList.add("hidden");
     quizContainerEl.classList.remove("hidden");
-    // prevAnsContEl.classList.add("hidden");
+    prevAnsContEl.classList.add("hidden");
     pickQuestion();
 }
 
@@ -128,13 +121,15 @@ function pickQuestion() {
         endGame();
         return;
     }
-    let i = count;
+    i = count;
+
     var qa = shuffQuestAnsArr[i];
     renderQuestAns(qa, i);
     count++;
 }
 
 function renderQuestAns(question, i) {
+    console.log(`previous answer ${prevAns}`);
     questCountEl.textContent = i + 1;
     questionEl.textContent = question.question;
     let answers = shuffleArray(question.answers);
@@ -142,49 +137,43 @@ function renderQuestAns(question, i) {
         ansLi[i].textContent = answers[i].text;
         ansLi[i].dataset.correct = answers[i].correct;
     }
-    // if (prevAns === true) {
-    //     prevAnsEl.classList.remove("hidden");
-    //     prevAnsEl.textContent = "correct";
-    // } else if (prevAns === false) {
-    //     prevAnsEl.classList.remove("hidden");
-    //     prevAnsEl.textContent = "wrong";
-    // }
+    if (prevAns === "") {
+        prevAnsContEl.classList.add("hidden");
+    } else if (prevAns == "true") {
+        prevAnsContEl.classList.remove("hidden");
+        prevAnsEl.textContent = "correct";
+    } else {
+        prevAnsContEl.classList.remove("hidden");
+        prevAnsEl.textContent = "wrong";
+    }
 }
 
 function chooseAnswer(e) {
-    const correct = e.target.dataset.correct;
-    if (Boolean(correct === true)) {
+    prevAns = e.target.dataset.correct;
+    let correct = e.target.dataset.correct;
+    console.log(`correct: ${correct}`);
+    if (correct == "true") {
         score++;
+        console.log(`score ${score}`);
     } else {
         time--;
+        console.log(`score ${score}`);
     }
-    // renderPrevAns(correct);
     pickQuestion();
 }
 
-// function renderPrevAns(correct) {
-//     prevAns = "";
-//     prevAnsContEl.classList.remove("hidden");
-//     prevAnsEl.textContent = "test";
-//     if (Boolean(correct === true)) {
-//         prevAnsEl.textContent = "right";
-//     } else {
-//         prevAnsEl.textContent = "wrong";
-//     }
-// }
-
 function endGame() {
+    prevAns = "";
     timerEl.textContent = "00";
     clearInterval(timeRemaining);
     startBtnEl.classList.remove("hidden");
     quizContainerEl.classList.add("hidden");
-    // gameOverEl.classList.remove("hidden");
-    // alert("GAME OVER");
-    prompt("Please enter your initials.");
+    gameOverEl.classList.remove("hidden");
+    // prompt("Please enter your initials.");
     // local storage initials and score
     // render topFive();
     // saveScore();
-    renderTopScores();
+    // renderTopScores();
     return;
 }
 
@@ -195,8 +184,9 @@ function endGame() {
 //     localStorage.setItem(initials, score);
 // }
 
-function renderTopScores() {}
+// function renderTopScores() {}
 
+/* SHUFFLES QUESTION ARRAY AND ANSWERS */
 function shuffleArray(arr) {
     for (var x = arr.length - 1; x > 0; x--) {
         var holder = Math.floor(Math.random() * (x + 1));
@@ -206,3 +196,8 @@ function shuffleArray(arr) {
     }
     return arr;
 }
+
+/* EVENT LISTENERS */
+startBtnEl.addEventListener("click", beginQuiz);
+startBtnEl.addEventListener("click", countdown);
+ansContEl.addEventListener("click", chooseAnswer);
