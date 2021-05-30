@@ -18,52 +18,88 @@
             <nav></nav>
             <h1>Quiz Time!</h1>
         </header>
-        <main class="quiz-container">
-            <div class="time-top5-container">
-                <div class="timer-container">
-                    <h2>Time remaining</h2>
-                    <p class="timer">00:<span id="timer">10</span></p>
-                </div>
-                <div class="top5">
-                    <h2>Top 5 Scores</h2>
-                    <ol class="top5-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ol>
-                </div>
-            </div>
-
-            <button id="start-btn" class="start-btn">START</button>
-
-            <div
-                id="question-answer-result-container"
-                class="question-answer-result-container hidden"
-            >
-                <div class="question">
-                    <h2>Question # <span id="question-count">COUNT</span></h2>
-                    <p id="question" class="question"></p>
-                </div>
-                <div class="multi-choice">
-                    <p>Please choose from the following options:</p>
-                    <div id="answer-btn-container" class="answer-btn-container">
-                        <button id="a1" class="btn"></button>
-                        <button id="a2" class="btn"></button>
-                        <button id="a3" class="btn"></button>
-                        <button id="a4" class="btn"></button>
+        <main>
+            <div class="quiz-container">
+                <div class="time-top5-container">
+                    <div class="timer-container">
+                        <h2>Time remaining</h2>
+                        <p class="timer">00:<span id="timer">10</span></p>
+                    </div>
+                    <div class="top5">
+                        <h2>Top 5 Scores</h2>
+                        <ol class="top5-list">
+                            <li id="top-1"></li>
+                            <li id="top-2"></li>
+                            <li id="top-3"></li>
+                            <li id="top-4"></li>
+                            <li id="top-5"></li>
+                        </ol>
                     </div>
                 </div>
-                <div class="prev-question-result hidden">
-                    <p>
-                        Your previous answer was
-                        <span id="prev-q-result"></span>
-                    </p>
+                <button id="start-btn" class="start-btn">START</button>
+
+                <div
+                    id="question-answer-result-container"
+                    class="question-answer-result-container hidden"
+                >
+                    <div class="question">
+                        <h2>
+                            Question # <span id="question-count">COUNT</span>
+                        </h2>
+                        <p id="question" class="question"></p>
+                    </div>
+                    <div class="multi-choice">
+                        <p>Please choose from the following options:</p>
+                        <div
+                            id="answer-btn-container"
+                            class="answer-btn-container"
+                        >
+                            <button id="a1" class="btn"></button>
+                            <button id="a2" class="btn"></button>
+                            <button id="a3" class="btn"></button>
+                            <button id="a4" class="btn"></button>
+                        </div>
+                    </div>
+                    <div class="prev-question-result hidden">
+                        <p>
+                            Your previous answer was
+                            <span id="prev-q-result"></span>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div id="game-over-container" class="hidden">
-                <p class="game-over">GAME OVER</p>
+                <div class="init-form hidden">
+                    <form action="#" id="init-form">
+                        <p>Please enter your initials</p>
+                        <div class="initial-container">
+                            <label for="init1"></label>
+                            <input
+                                type="text"
+                                maxlength="1"
+                                name="init1"
+                                id="init1"
+                            />
+                            <label for="init2"></label>
+                            <input
+                                type="text"
+                                maxlength="1"
+                                name="init2"
+                                id="init2"
+                            />
+                            <label for="init3"></label>
+                            <input
+                                type="text"
+                                maxlength="1"
+                                name="init3"
+                                id="init3"
+                            />
+                        </div>
+                        <button class="btn form-submit-btn">Submit</button>
+                    </form>
+                    <p class="game-over">GAME OVER</p>
+                </div>
+                <!-- <div id="game-over-container" class="hidden">
+                    <p class="game-over">GAME OVER</p>
+                </div> -->
             </div>
         </main>
         <footer></footer>

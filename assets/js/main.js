@@ -18,7 +18,8 @@
 
 /* HTML VARIABLES */
 const timerEl = document.querySelector("#timer");
-const startBtnEl = document.querySelector("#start-btn");
+const startBtnContEl = document.querySelector("#start-btn-cont");
+const startBtnEl = document.querySelector(".start-btn");
 const quizContainerEl = document.querySelector(
     "#question-answer-result-container"
 );
@@ -32,6 +33,8 @@ const a4El = document.querySelector("#a4");
 const gameOverEl = document.querySelector("#game-over-container");
 const prevAnsContEl = document.querySelector(".prev-question-result");
 const prevAnsEl = document.querySelector("#prev-q-result");
+const formEl = document.querySelector(".init-form");
+const formBtnEl = document.querySelector(".form-submit-btn");
 
 /* QUESTION ARRAY */
 const questAnsArr = [
@@ -86,10 +89,11 @@ let topScores = [{ MC: 5 }, { MC: 3 }, { NOV: 4 }];
 
 /* TRIGGERED BY EVENT LISTENER ON START BUTTON */
 function beginQuiz() {
-    gameOverEl.classList.add("hidden");
+    // gameOverEl.classList.add("hidden");
     count = 0;
     score = 0;
     startBtnEl.classList.add("hidden");
+
     quizContainerEl.classList.remove("hidden");
     prevAnsContEl.classList.add("hidden");
     pickQuestion();
@@ -129,7 +133,6 @@ function pickQuestion() {
 }
 
 function renderQuestAns(question, i) {
-    console.log(`previous answer ${prevAns}`);
     questCountEl.textContent = i + 1;
     questionEl.textContent = question.question;
     let answers = shuffleArray(question.answers);
@@ -151,13 +154,10 @@ function renderQuestAns(question, i) {
 function chooseAnswer(e) {
     prevAns = e.target.dataset.correct;
     let correct = e.target.dataset.correct;
-    console.log(`correct: ${correct}`);
     if (correct == "true") {
         score++;
-        console.log(`score ${score}`);
     } else {
         time--;
-        console.log(`score ${score}`);
     }
     pickQuestion();
 }
@@ -166,23 +166,44 @@ function endGame() {
     prevAns = "";
     timerEl.textContent = "00";
     clearInterval(timeRemaining);
-    startBtnEl.classList.remove("hidden");
     quizContainerEl.classList.add("hidden");
-    gameOverEl.classList.remove("hidden");
-    // prompt("Please enter your initials.");
+    // gameOverEl.classList.remove("hidden");
+    formEl.classList.remove("hidden");
+
     // local storage initials and score
     // render topFive();
     // saveScore();
     // renderTopScores();
-    return;
+
+    // return;
 }
 
-// function saveScore() {
-//     // save score and initials to localstorage (string)
-//     initials = input;
-//     score = score;
-//     localStorage.setItem(initials, score);
-// }
+function saveScore(e) {
+    const initials = document.querySelector("init-form");
+    e.preventDefault();
+    console.log(initials);
+    // console.log(event.target);
+    // console.log(event.target.elements[0].value);
+
+    // grabs the entire form as an object
+    // const form = event.target;
+
+    // `${name} is ${age} years old`
+    // shoppingList.innerHTML += `<li>${form.elements[0].value}</li>`;
+    // form.removeEventListener();
+    // });
+
+    // const form = e.target;
+    // e.preventDefault();
+    // console.log(e.target.elements.value);
+
+    //     // save score and initials to localstorage (string)
+    //     initials = input;
+    //     score = score;
+    //     localStorage.setItem(initials, score);
+    formEl.classList.add("hidden");
+    startBtnEl.classList.remove("hidden");
+}
 
 // function renderTopScores() {}
 
@@ -201,3 +222,4 @@ function shuffleArray(arr) {
 startBtnEl.addEventListener("click", beginQuiz);
 startBtnEl.addEventListener("click", countdown);
 ansContEl.addEventListener("click", chooseAnswer);
+formBtnEl.addEventListener("click", saveScore);

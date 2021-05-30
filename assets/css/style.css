@@ -2,12 +2,8 @@
     --dark: rgb(128, 128, 128);
     --inner-container: 95%;
     --bord-rad: 15px;
-    --font-size-mob: ;
-    --font-size-tab: ;
-    --font-size-desk: ;
+    --font-size: 1rem;
     --std-pad: 0.75rem;
-    --start-btn-pad: ;
-    --answer-btn-pad: ;
 }
 
 body {
@@ -25,6 +21,11 @@ h1 {
     margin: 1rem 0;
 }
 
+h2 {
+    font-size: 1rem;
+    text-align: center;
+}
+
 .quiz-container {
     border: 3px solid var(--dark);
     border-radius: 25px;
@@ -33,14 +34,14 @@ h1 {
     align-items: center;
     width: 90vw;
     padding: var(--std-pad);
-    margin: 1rem 0;
+    margin: var(--std-pad) 0;
     background: white;
 }
 
 .time-top5-container {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
     width: var(--inner-container);
@@ -56,6 +57,7 @@ h1 {
     padding: var(--std-pad);
     background: black;
     border-radius: var(--bord-rad);
+    width: auto;
 }
 
 .timer-container > * {
@@ -63,34 +65,43 @@ h1 {
     font-weight: bold;
 }
 
-.timer-container > h2 {
-    margin-left: 0.5rem;
-}
-
-.timer-container > p {
+.timer {
     font-size: 2rem;
-    align-self: flex-start;
-    padding-left: 0.75rem;
 }
 
 .top5 {
     display: flex;
     flex-flow: column;
     gap: 0.5rem;
-    width: 49%;
+    width: auto;
     padding: var(--std-pad);
     background: lightgray;
     border: 1px solid var(--dark);
     border-radius: var(--bord-rad);
 }
 
-.top5 > ol {
-    padding-left: 1.75rem;
+ol {
+    padding-left: 2rem;
     list-style: decimal;
     font-weight: bold;
 }
 
+li {
+    padding: 0.1rem 0;
+    font-size: var(--font-size);
+}
+
+.start-btn-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
 .start-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: var(--bord-rad);
@@ -179,7 +190,50 @@ h1 {
     gap: 1rem;
     width: var(--inner-container);
     margin: 1rem;
-    font-size: 3rem;
+}
+
+.init-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--dark);
+    border-radius: var(--bord-rad);
+    padding: 0.75rem 0;
+    width: var(--inner-container);
+}
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 70%;
+}
+
+.initial-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.initial-container > label {
+    display: none;
+}
+
+.initial-container > input {
+    width: 20%;
+    text-align: center;
+    border: 1px solid var(--dark);
+    border-radius: var(--bord-rad);
+    padding: 0.25rem 0;
+}
+
+.form-submit-btn {
+    padding: 0.5rem;
 }
 
 .game-over {
@@ -194,74 +248,65 @@ h1 {
 }
 
 /* BEGIN TABLET STYLING */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 765px) {
     :root {
         --inner-container: 80%;
-        --std-pad: 1.5rem;
-    }
-
-    body {
-        align-items: center;
+        --font-size: 1.5rem;
+        --std-pad: 1.25rem;
     }
 
     h1 {
         font-size: 3rem;
-        margin: 2rem 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
     }
 
     .quiz-container {
-        width: 75vw;
+        width: 85vw;
     }
 
     .time-top5-container {
-        margin: 3rem 0 1.5rem 0;
+        width: var(--inner-container);
+        margin: var(--std-pad);
     }
 
     .timer-container {
-        width: 45%;
-        /* padding: 2rem; */
-        font-size: 1.5rem;
+        gap: 1rem;
+        padding: var(--std-pad);
     }
 
-    .timer-container > p {
+    .timer {
         font-size: 3rem;
-        padding-left: 2rem;
     }
 
     .top5 {
-        width: 40%;
-        /* padding: 2rem; */
-        font-size: 1.5rem;
+        gap: 0.5rem;
+        width: 50%;
+        padding: var(--std-pad);
         border: 2px solid var(--dark);
     }
 
-    .top5 > ol {
-        padding-left: 2.5rem;
+    ol {
+        padding-left: 3.5rem;
+    }
+
+    li {
+        padding: 0.25rem 0;
     }
 
     .start-btn {
-        /* padding: 1.5rem; */
-        margin: 1.5rem 0 3rem 0;
-        border-radius: var(--bord-rad);
-        background: green;
-        color: white;
-        font-size: 2rem;
-        font-weight: bold;
+        padding: 1.5rem;
+        font-size: 3rem;
     }
 
     .question-answer-result-container {
-        display: flex;
-        flex-flow: column nowrap;
-        gap: 1rem;
         width: var(--inner-container);
-        margin: 1rem;
-        /* background: lightgrey; */
     }
 
     .question-answer-result-container > * {
-        /* padding: 1rem; */
-        border: 1px solid var(--dark);
-        border-radius: var(--bord-rad);
+        border: 2px solid var(--dark);
     }
 
     .question {
@@ -273,95 +318,232 @@ h1 {
         height: 200px;
     }
 
-    .question h2 {
-        align-self: flex-start;
-    }
-
     .question p {
-        width: 85%;
-        text-align: center;
+        width: 75%;
+        font-size: var(--font-size);
     }
 
     .multi-choice {
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
     }
 
-    .multi-choice p {
-        align-self: flex-start;
+    .multi-choice > p {
+        font-size: var(--font-size);
     }
 
     .answer-btn-container {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        gap: 0.25em;
+        gap: 0.5em;
     }
 
     .btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* padding: 10px; */
-        border-radius: var(--bord-rad);
-        width: 49%;
-        background: rgb(37, 87, 253);
-        font-weight: bold;
-        color: white;
-        border: 2px solid lightblue;
+        padding: var(--std-pad);
+        font-size: var(--font-size);
+        border: 3px solid lightblue;
     }
 
     .prev-question-result {
-        display: flex;
+        font-size: var(--font-size);
+    }
+
+    .init-form {
+        padding: 1rem 0;
+        width: var(--inner-container);
+    }
+
+    form {
+        width: 70%;
+        font-size: var(--font-size);
+    }
+
+    .initial-container {
+        /* display: flex;
+        flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
-        height: 50px;
+        gap: 1rem; */
+    }
+
+    /* .initial-container > label {
+        display: none;
+    } */
+
+    /* .initial-container > input {
+        width: 20%;
+        text-align: center;
+        border: 1px solid var(--dark);
+        border-radius: var(--bord-rad);
+        padding: 0.25rem 0;
+    } */
+
+    .form-submit-btn {
+        padding: 0.5rem;
     }
 
     .game-over-container {
-        display: flex;
-        flex-flow: column nowrap;
         gap: 1rem;
         width: var(--inner-container);
         margin: 1rem;
-        font-size: 3rem;
     }
 
     .game-over {
-        color: red;
-        font-size: 2rem;
-        font-weight: bold;
-        /* padding: 1rem 0; */
+        padding: var(--std-pad);
+        font-size: 3rem;
+    }
+
+    .hidden {
+        display: none;
     }
 }
 
 /* BEING DESKTOP STYLING */
 @media screen and (min-width: 1024px) {
-    body {
-        font-family: "Montserrat", sans-serif;
-        font-size: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 1rem;
-        background: lightgrey;
+    :root {
+        --inner-container: 75%;
+        --font-size: 1.5rem;
+        --std-pad: 1.25rem;
     }
 
     h1 {
         font-size: 3rem;
-        padding-top: 0.75rem;
+        margin: 0.5rem 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
     }
 
     .quiz-container {
-        width: 75vw;
+        flex-flow: row nowrap;
+        width: 85vw;
+        margin: var(--std-pad) 0;
     }
 
-    :root {
-        --timer-5-container: 80%;
+    .time-top5-container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 3rem;
+        width: 25%;
+        margin: var(--std-pad);
+    }
+
+    .timer-container {
+        gap: 1rem;
+        padding: var(--std-pad);
+    }
+
+    .timer {
+        font-size: 3rem;
+    }
+
+    .top5 {
+        gap: 0.5rem;
+        width: 100%;
+        padding: var(--std-pad);
+        border: 2px solid var(--dark);
+    }
+
+    ol {
+        padding-left: 3.5rem;
+    }
+
+    li {
+        padding: 0.25rem 0;
+    }
+
+    .start-btn {
+        padding: 1.5rem;
+        font-size: 3rem;
+        margin-left: 14rem;
+    }
+
+    .question-answer-result-container {
+        width: auto;
+    }
+
+    .question-answer-result-container > * {
+        border: 2px solid var(--dark);
+    }
+
+    .question {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        height: 200px;
+    }
+
+    .question p {
+        width: 75%;
+        font-size: var(--font-size);
+    }
+
+    .multi-choice {
+        gap: 1rem;
+    }
+
+    .answer-btn-container {
+        gap: 0.5em;
+    }
+
+    .btn {
+        padding: var(--std-pad);
+        font-size: var(--font-size);
+        border: 3px solid lightblue;
+    }
+
+    .prev-question-result {
+        font-size: var(--font-size);
+    }
+
+    .init-form {
+        padding: 1rem 0;
+        width: var(--inner-container);
+    }
+
+    form {
+        width: 70%;
+        font-size: var(--font-size);
+    }
+
+    .initial-container {
+        /* display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; */
+    }
+
+    /* .initial-container > label {
+        display: none;
+    } */
+
+    /* .initial-container > input {
+        width: 20%;
+        text-align: center;
+        border: 1px solid var(--dark);
+        border-radius: var(--bord-rad);
+        padding: 0.25rem 0;
+    } */
+
+    .form-submit-btn {
+        padding: 0.5rem;
+    }
+
+    .game-over-container {
+        gap: 1rem;
+        width: var(--inner-container);
+        margin: 1rem;
+    }
+
+    .game-over {
+        padding: var(--std-pad);
+        font-size: 3rem;
+    }
+
+    .hidden {
+        display: none;
     }
 }
