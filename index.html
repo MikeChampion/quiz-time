@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="init-form hidden">
-                    <form action="#" id="init-form">
+                    <form id="init-form">
                         <p>Please enter your initials</p>
                         <div class="initial-container">
                             <label for="init1"></label>
@@ -77,6 +77,7 @@
                                 maxlength="1"
                                 name="init1"
                                 id="init1"
+                                required
                             />
                             <label for="init2"></label>
                             <input
@@ -84,6 +85,7 @@
                                 maxlength="1"
                                 name="init2"
                                 id="init2"
+                                required
                             />
                             <label for="init3"></label>
                             <input
@@ -91,18 +93,16 @@
                                 maxlength="1"
                                 name="init3"
                                 id="init3"
+                                required
                             />
                         </div>
                         <button class="btn form-submit-btn">Submit</button>
                     </form>
-                    <p class="game-over">GAME OVER</p>
                 </div>
-                <!-- <div id="game-over-container" class="hidden">
-                    <p class="game-over">GAME OVER</p>
-                </div> -->
             </div>
         </main>
         <footer></footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="./assets/js/main.js"></script>
     </body>
 </html>
