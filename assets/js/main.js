@@ -115,7 +115,7 @@ function countdown() {
             timerEl.textContent = "0" + time;
         }
 
-        if (time === -1) {
+        if (time < 0) {
             endGame();
             return;
         }
@@ -139,7 +139,6 @@ function renderQuestAns(question, i) {
     questionEl.textContent = question.question;
     let answers = shuffleArray(question.answers);
     for (let i = 0; i < answers.length; i++) {
-        console.log(answers[i].text);
         ansLi[i].textContent = answers[i].text;
         ansLi[i].dataset.correct = answers[i].correct;
     }
@@ -192,6 +191,7 @@ function saveScore(event) {
     if (topScores.length > 5) {
         topScores = topScores.slice(0, 5);
     }
+    console.log(topScores);
     topScores = JSON.stringify(topScores);
     localStorage.setItem("topScores", topScores);
     formEl.classList.add("hidden");
@@ -205,7 +205,7 @@ function renderTopScores() {
     if (!top5get) {
         return;
     }
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < top5get.length; i++) {
         let t5 = `  ${top5get[i].name}  ${top5get[i].score}`;
         top5Li[i].textContent = t5;
     }
