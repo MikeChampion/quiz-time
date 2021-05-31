@@ -189,6 +189,9 @@ function saveScore(event) {
     let newScore = { name: initials, score: score };
     topScores.push(newScore);
     topScores.sort((a, b) => (b.score > a.score ? 1 : -1));
+    if (topScores.length > 5) {
+        topScores = topScores.slice(0, 5);
+    }
     topScores = JSON.stringify(topScores);
     localStorage.setItem("topScores", topScores);
     formEl.classList.add("hidden");
@@ -202,7 +205,7 @@ function renderTopScores() {
     if (!top5get) {
         return;
     }
-    for (let i = 0; i < top5get.length; i++) {
+    for (let i = 0; i < 6; i++) {
         let t5 = `  ${top5get[i].name}  ${top5get[i].score}`;
         top5Li[i].textContent = t5;
     }
