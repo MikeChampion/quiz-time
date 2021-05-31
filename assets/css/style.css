@@ -91,11 +91,17 @@ li {
     font-size: var(--font-size);
 }
 
-.start-btn-cont {
+.content-container {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: auto;
+    width: 100%;
+}
+
+.start-btn-container {
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .start-btn {
@@ -184,14 +190,6 @@ li {
     height: 50px;
 }
 
-.game-over-container {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1rem;
-    width: var(--inner-container);
-    margin: 1rem;
-}
-
 .init-form {
     display: flex;
     flex-flow: row wrap;
@@ -234,13 +232,6 @@ form {
 
 .form-submit-btn {
     padding: 0.5rem;
-}
-
-.game-over {
-    color: red;
-    font-size: 2rem;
-    font-weight: bold;
-    padding: var(--std-pad);
 }
 
 .hidden {
@@ -356,39 +347,8 @@ form {
         font-size: var(--font-size);
     }
 
-    .initial-container {
-        /* display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem; */
-    }
-
-    /* .initial-container > label {
-        display: none;
-    } */
-
-    /* .initial-container > input {
-        width: 20%;
-        text-align: center;
-        border: 1px solid var(--dark);
-        border-radius: var(--bord-rad);
-        padding: 0.25rem 0;
-    } */
-
     .form-submit-btn {
         padding: 0.5rem;
-    }
-
-    .game-over-container {
-        gap: 1rem;
-        width: var(--inner-container);
-        margin: 1rem;
-    }
-
-    .game-over {
-        padding: var(--std-pad);
-        font-size: 3rem;
     }
 
     .hidden {
@@ -422,11 +382,13 @@ form {
     .time-top5-container {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
+        align-self: flex-start;
         gap: 3rem;
         width: 25%;
-        margin: var(--std-pad);
+        border: 0 2px 0 0 solid var(--dark);
+        border-radius: var(--bord-rad);
     }
 
     .timer-container {
@@ -440,7 +402,7 @@ form {
 
     .top5 {
         gap: 0.5rem;
-        width: 70%;
+        width: 75%;
         padding: var(--std-pad);
         border: 2px solid var(--dark);
     }
@@ -453,14 +415,35 @@ form {
         padding: 0.25rem 0 0.25rem 1.75rem;
     }
 
+    .content-container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        /* height: 750px; */
+    }
+
+    .start-btn-container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+
     .start-btn {
         padding: 1.5rem;
         font-size: 3rem;
-        margin-left: 14rem;
+        margin-bottom: 0;
     }
 
     .question-answer-result-container {
-        width: auto;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        /* width: auto; */
     }
 
     .question-answer-result-container > * {
@@ -473,7 +456,7 @@ form {
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
-        height: 200px;
+        height: 150px;
     }
 
     .question p {
@@ -505,43 +488,12 @@ form {
     }
 
     form {
-        width: %;
+        width: 70%;
         font-size: var(--font-size);
     }
 
-    .initial-container {
-        /* display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem; */
-    }
-
-    /* .initial-container > label {
-        display: none;
-    } */
-
-    /* .initial-container > input {
-        width: 20%;
-        text-align: center;
-        border: 1px solid var(--dark);
-        border-radius: var(--bord-rad);
-        padding: 0.25rem 0;
-    } */
-
     .form-submit-btn {
         padding: 0.5rem;
-    }
-
-    .game-over-container {
-        gap: 1rem;
-        width: var(--inner-container);
-        margin: 1rem;
-    }
-
-    .game-over {
-        padding: var(--std-pad);
-        font-size: 3rem;
     }
 
     .hidden {

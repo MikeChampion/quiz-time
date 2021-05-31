@@ -36,68 +36,76 @@
                         </ol>
                     </div>
                 </div>
-                <button id="start-btn" class="start-btn">START</button>
+                <!-- <div id="start-btn-container">
+                    <button id="start-btn" class="start-btn">START</button>
+                </div> -->
+                <div class="content-container">
+                    <div class="start-btn-container">
+                        <button id="start-btn" class="start-btn">START</button>
+                    </div>
 
-                <div
-                    id="question-answer-result-container"
-                    class="question-answer-result-container hidden"
-                >
-                    <div class="question">
-                        <h2>
-                            Question # <span id="question-count">COUNT</span>
-                        </h2>
-                        <p id="question" class="question"></p>
-                    </div>
-                    <div class="multi-choice">
-                        <p>Please choose from the following options:</p>
-                        <div
-                            id="answer-btn-container"
-                            class="answer-btn-container"
-                        >
-                            <button id="a1" class="btn"></button>
-                            <button id="a2" class="btn"></button>
-                            <button id="a3" class="btn"></button>
-                            <button id="a4" class="btn"></button>
+                    <div
+                        id="question-answer-result-container"
+                        class="question-answer-result-container hidden"
+                    >
+                        <div class="question">
+                            <h2>
+                                Question #
+                                <span id="question-count">COUNT</span>
+                            </h2>
+                            <p id="question" class="question"></p>
+                        </div>
+                        <div class="multi-choice">
+                            <p>Please choose from the following options:</p>
+                            <div
+                                id="answer-btn-container"
+                                class="answer-btn-container"
+                            >
+                                <button id="a1" class="btn"></button>
+                                <button id="a2" class="btn"></button>
+                                <button id="a3" class="btn"></button>
+                                <button id="a4" class="btn"></button>
+                            </div>
+                        </div>
+                        <div class="prev-question-result hidden">
+                            <p>
+                                Your previous answer was
+                                <span id="prev-q-result"></span>
+                            </p>
                         </div>
                     </div>
-                    <div class="prev-question-result hidden">
-                        <p>
-                            Your previous answer was
-                            <span id="prev-q-result"></span>
-                        </p>
+                    <div class="init-form hidden">
+                        <form id="init-form">
+                            <p>Please enter your initials</p>
+                            <div class="initial-container">
+                                <label for="init1"></label>
+                                <input
+                                    type="text"
+                                    maxlength="1"
+                                    name="init1"
+                                    id="init1"
+                                    required
+                                />
+                                <label for="init2"></label>
+                                <input
+                                    type="text"
+                                    maxlength="1"
+                                    name="init2"
+                                    id="init2"
+                                    required
+                                />
+                                <label for="init3"></label>
+                                <input
+                                    type="text"
+                                    maxlength="1"
+                                    name="init3"
+                                    id="init3"
+                                    required
+                                />
+                            </div>
+                            <button class="btn form-submit-btn">Submit</button>
+                        </form>
                     </div>
-                </div>
-                <div class="init-form hidden">
-                    <form id="init-form">
-                        <p>Please enter your initials</p>
-                        <div class="initial-container">
-                            <label for="init1"></label>
-                            <input
-                                type="text"
-                                maxlength="1"
-                                name="init1"
-                                id="init1"
-                                required
-                            />
-                            <label for="init2"></label>
-                            <input
-                                type="text"
-                                maxlength="1"
-                                name="init2"
-                                id="init2"
-                                required
-                            />
-                            <label for="init3"></label>
-                            <input
-                                type="text"
-                                maxlength="1"
-                                name="init3"
-                                id="init3"
-                                required
-                            />
-                        </div>
-                        <button class="btn form-submit-btn">Submit</button>
-                    </form>
                 </div>
             </div>
         </main>

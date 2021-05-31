@@ -23,7 +23,7 @@ const top2El = document.querySelector("#top-2");
 const top3El = document.querySelector("#top-3");
 const top4El = document.querySelector("#top-4");
 const top5El = document.querySelector("#top-5");
-const startBtnContEl = document.querySelector("#start-btn-cont");
+//const startBtnContEl = document.querySelector("#start-btn-container");
 const startBtnEl = document.querySelector(".start-btn");
 const quizContainerEl = document.querySelector(
     "#question-answer-result-container"
@@ -102,7 +102,7 @@ function beginQuiz() {
 }
 
 function countdown() {
-    time = 3;
+    time = 10;
     timerEl.textContent = time;
     timeRemaining = setInterval(function () {
         time--;
@@ -174,6 +174,7 @@ function endGame() {
 }
 
 /* GETS FORM INPUT OF INITIALS AND SAVES WITH SCORE TO 'TOPSCORES' */
+/* SORTS TOPSCORES BY SCORE */
 function saveScore(event) {
     event.preventDefault();
     let topScores = JSON.parse(localStorage.getItem("topScores"));
@@ -186,12 +187,10 @@ function saveScore(event) {
     let initials = init1.concat(init2, init3);
     initials = initials.toUpperCase();
     let newScore = { name: initials, score: score };
-    console.log(newScore);
     topScores.push(newScore);
-    console.log(topScores);
+    topScores.sort((a, b) => (b.score > a.score ? 1 : -1));
     topScores = JSON.stringify(topScores);
     localStorage.setItem("topScores", topScores);
-
     formEl.classList.add("hidden");
     startBtnEl.classList.remove("hidden");
     renderTopScores();
