@@ -101,6 +101,7 @@ function beginQuiz() {
     pickQuestion();
 }
 
+/* TRIGGERED BY EVENT LISTENER ON START BUTTON */
 function countdown() {
     time = 10;
     timerEl.textContent = time;
@@ -122,6 +123,7 @@ function countdown() {
     }, 1000);
 }
 
+/* RANDOMIZES QUESTION ARRAY AND RENDERS TO THE PAGE */
 function pickQuestion() {
     if (count === shuffQuestAnsArr.length) {
         endGame();
@@ -134,6 +136,7 @@ function pickQuestion() {
     count++;
 }
 
+/* RANDOMIZES ANSWERS AND RENDERS TO THE PAGE */
 function renderQuestAns(question, i) {
     questCountEl.textContent = i + 1;
     questionEl.textContent = question.question;
@@ -153,6 +156,7 @@ function renderQuestAns(question, i) {
     }
 }
 
+/* TRIGGERED BY EVENT LISTENER */
 function chooseAnswer(e) {
     prevAns = e.target.dataset.correct;
     let correct = e.target.dataset.correct;
@@ -164,6 +168,7 @@ function chooseAnswer(e) {
     pickQuestion();
 }
 
+/* TRIGGERED BY THE END OF THE GAME */
 function endGame() {
     prevAns = "";
     clearInterval(timeRemaining);
@@ -174,6 +179,7 @@ function endGame() {
 
 /* GETS FORM INPUT OF INITIALS AND SAVES WITH SCORE TO 'TOPSCORES' */
 /* SORTS TOPSCORES BY SCORE */
+/* TRIMS TOPSCORES TO 5 ITEMS IF TOPSCORES IS LONGER THAN 5 ITEMS  */
 function saveScore(event) {
     event.preventDefault();
     let topScores = JSON.parse(localStorage.getItem("topScores"));
