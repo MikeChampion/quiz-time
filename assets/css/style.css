@@ -201,6 +201,10 @@ li {
     width: var(--inner-container);
 }
 
+.init-form > p {
+    margin: 0.5rem 0;
+}
+
 form {
     display: flex;
     flex-flow: column wrap;
@@ -340,11 +344,15 @@ form {
     .init-form {
         padding: 1rem 0;
         width: var(--inner-container);
+        font-size: var(--font-size);
+    }
+
+    .init-form > p {
+        margin: 0.75rem 0;
     }
 
     form {
         width: 70%;
-        font-size: var(--font-size);
     }
 
     .form-submit-btn {
@@ -485,11 +493,15 @@ form {
     .init-form {
         padding: 1rem 0;
         width: var(--inner-container);
+        font-size: var(--font-size);
+    }
+
+    .init-form > p {
+        margin: 0.75rem 0;
     }
 
     form {
         width: 70%;
-        font-size: var(--font-size);
     }
 
     .form-submit-btn {

@@ -37,6 +37,7 @@ const a3El = document.querySelector("#a3");
 const a4El = document.querySelector("#a4");
 const prevAnsContEl = document.querySelector(".prev-question-result");
 const prevAnsEl = document.querySelector("#prev-q-result");
+const finalScore = document.querySelector(".finalScore");
 const formEl = document.querySelector(".init-form");
 
 /* QUESTION ARRAY */
@@ -175,6 +176,7 @@ function endGame() {
     timerEl.textContent = "00";
     quizContainerEl.classList.add("hidden");
     formEl.classList.remove("hidden");
+    finalScore.textContent = score;
 }
 
 /* GETS FORM INPUT OF INITIALS AND SAVES WITH SCORE TO 'TOPSCORES' */
